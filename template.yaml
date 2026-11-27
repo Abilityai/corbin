@@ -1,0 +1,108 @@
+# Trinity agent template: Chief of Staff.
+# Seeded on every new Trinity instance next to the Company Brain (template: cornelius).
+
+name: corbin
+display_name: "Chief of Staff"
+avatar_prompt: A calm, attentive chief of staff in her forties holding a single index card with three handwritten priorities, standing beside a tidy desk with a closed notebook and a cup of coffee, soft early-morning window light, warm neutral tones
+tagline: "Your Chief of Staff: transcripts, email, commitments and a short daily brief"
+description: |
+  A Chief of Staff for one person at a small company. Drop a meeting transcript, an exported
+  email or your notes on it and it pulls out the decisions, the action items with owners and
+  dates, and a follow-up draft; it keeps one list of what you owe and what is owed to you, and
+  writes replies in your tone for you to send. It learns how you work: tell it a procedure or a
+  standing rule once and it keeps it. Durable knowledge (who someone is, what was decided) is
+  offered to the Company Brain on the same instance, and "what do we know about X" is asked
+  there first. Works on first boot with no credentials. Connecting a mailbox or a calendar is
+  optional and read-only. It never sends anything: drafts are text for you to send.
+
+version: "1.0.0"
+updated: "2026-11-27"
+
+resources:
+  cpu: "1"
+  memory: "2g"
+
+use_cases:
+  - "Drop a meeting transcript and get decisions, action items and a follow-up draft"
+  - "Drop an exported email and get it triaged, with a reply drafted in your tone"
+  - "Ask what you owe people and who owes you, with follow-up drafts"
+  - "Get a short morning brief of what is due and what came in"
+  - "Prepare for a meeting from what is on record about the people in it"
+  - "Teach it a procedure or a standing rule once and have it follow it"
+
+# Nothing is required. Both credentials are optional and read-only; the agent works without
+# them from files the person drops on it. /connect explains how to add them.
+credentials:
+  env_file:
+    - CALENDAR_READ_CREDENTIAL
+    - MAILBOX_READ_CREDENTIAL
+credential_setup:
+  - name: CALENDAR_READ_CREDENTIAL
+    title: Optional - read access to your calendar
+    description: The private address of your calendar's iCalendar (.ics) feed. Lets the brief and meeting preparation see your meetings. A feed cannot be written to. Leave empty to work without a calendar.
+    required: false
+    secret: true
+  - name: MAILBOX_READ_CREDENTIAL
+    title: Optional - read access to your own Google mailbox
+    description: The JSON key of a Google service account that a Google Workspace administrator has given read-only Gmail access (domain-wide delegation, the one scope gmail.readonly). Google grants this for every mailbox in the domain; the agent's script reads only the one address written in workspace/profile/connections.md. Use a service account made for this agent alone. Leave empty to work from exported emails instead.
+    required: false
+    secret: true
+
+# Business metrics. Trinity reads this block at container start and validates every point the
+# agent records against it. dashboard.yaml binds to these names and is never rewritten.
+metrics:
+  - name: i_owe_open
+    type: gauge
+    label: "You owe"
+    description: "Open lines in the commitments list that the person owes someone"
+    direction: down_good
+    aggregation: last
+  - name: owed_to_me_open
+    type: gauge
+    label: "Owed to you"
+    description: "Open lines in the commitments list that someone owes the person"
+    direction: neutral
+    aggregation: last
+  - name: inbox_waiting
+    type: gauge
+    label: "Waiting in the inbox"
+    description: "Dropped files not yet processed"
+    direction: down_good
+    aggregation: last
+  - name: last_run_state
+    type: status
+    label: "Last run"
+    values:
+      - value: done
+        color: green
+        label: Result published
+      - value: held
+        color: yellow
+        label: Partial, or waiting on the person
+      - value: not_set_up
+        color: yellow
+        label: An optional source is not connected
+      - value: blocked
+        color: red
+        label: A file or a source could not be read
+
+# Recorded off. The person switches one on from the Schedules tab if they want it.
+schedules:
+  - name: Weekday morning brief
+    cron: "0 7 * * 1-5"
+    timezone: UTC
+    message: "/morning-brief"
+    purpose: A short brief of what is due and what came in, ready before the day starts
+    enabled: false
+  - name: Daily intake
+    cron: "0 18 * * 1-5"
+    timezone: UTC
+    message: "/daily-intake"
+    purpose: Process everything dropped during the day so nothing waits overnight
+    enabled: false
+
+# Pull-only. The agent never commits or pushes; everything it writes lives under workspace/,
+# which this repo ignores and never ships, so a template update never collides with the
+# person's data.
+git:
+  push_enabled: false

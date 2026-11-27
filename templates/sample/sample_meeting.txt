@@ -1,0 +1,12 @@
+Weekly operations sync - sample transcript (fictional, shipped with the Chief of Staff template)
+Date: 2026-01-15
+Attendees: Sam Rivera (you), Priya Shah (operations), Tom Becker (Acme Supplies)
+
+Sam: Thanks for joining. Two things today: the spring order and the new delivery window.
+Tom: On the spring order, we can hold the current price if you confirm volumes by January 30.
+Sam: Fine. Priya, can you pull last year's volumes and send them to me by Friday?
+Priya: Yes, I'll have them to you by Friday.
+Tom: I'll send over the revised delivery schedule early next week.
+Sam: Good. Then we agreed: we keep Acme as the main supplier for spring, and we move deliveries to Tuesday mornings.
+Priya: One open question - do we need a second supplier as a backup? Nobody has looked at that yet.
+Sam: Let's leave that for now. I'll confirm volumes to Tom once I have Priya's numbers.

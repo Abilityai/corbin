@@ -1,0 +1,25 @@
+# Bound to the metrics declared in template.yaml. Values come from the metric store;
+# the agent never rewrites this file, so it can never block a template update.
+title: "Chief of Staff"
+refresh: 300
+
+sections:
+  - title: "Status"
+    layout: grid
+    columns: 4
+    widgets:
+      - type: status
+        label: "Last run"
+        metric: last_run_state
+      - type: metric
+        id: i_owe_open
+        label: "You owe"
+        metric: i_owe_open
+      - type: metric
+        id: owed_to_me_open
+        label: "Owed to you"
+        metric: owed_to_me_open
+      - type: metric
+        id: inbox_waiting
+        label: "Waiting in the inbox"
+        metric: inbox_waiting

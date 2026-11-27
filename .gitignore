@@ -1,0 +1,35 @@
+# The person's data. The template never ships anything under these paths, so files the agent
+# writes at runtime can never block a later template pull.
+/workspace/
+/STATUS.md
+
+# Files a person drops on the agent (Trinity saves Workspace drops under inbox/<who>/ and chat
+# uploads under uploads/<session>/). The platform's managed .gitignore covers them too.
+/inbox/*/
+/uploads/
+
+# Platform-managed and secrets
+.env
+.env.*
+!.env.example
+.mcp.json
+.trinity/*
+!.trinity/setup.sh
+.claude/settings.local.json
+.claude/projects/
+.claude/cache/
+.claude/debug/
+.claude/todos/
+.claude/statsig/
+.claude/shell-snapshots/
+data/
+public/
+content/
+shared-in/
+shared-out/
+
+# Python and OS
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store

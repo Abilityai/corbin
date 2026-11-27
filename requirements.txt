@@ -1,0 +1,3 @@
+# What scripts/mail.py needs. Install once: python3 -m pip install -r requirements.txt
+google-auth>=2.20
+requests>=2.28

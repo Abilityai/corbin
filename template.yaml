@@ -3,7 +3,9 @@
 
 name: corbin
 display_name: "Chief of Staff"
-avatar_prompt: A calm, attentive chief of staff in her forties holding a single index card with three handwritten priorities, standing beside a tidy desk with a closed notebook and a cup of coffee, soft early-morning window light, warm neutral tones
+# The face Trinity shows for this agent. avatar.webp at the repo root is used as-is;
+# this prompt is what a regenerated avatar is drawn from, so it stays in character.
+avatar_prompt: A calm, attentive human face seen from the front, formed from warm amber and gold light, fine teal constellation lines tracing the brow and cheekbones like an organised star chart, a bright point of light in each eye, golden dust trailing from the edges, on a black star field
 tagline: "Your Chief of Staff: transcripts, email, commitments and a short daily brief"
 description: |
   A Chief of Staff for one person at a small company. Drop a meeting transcript, an exported

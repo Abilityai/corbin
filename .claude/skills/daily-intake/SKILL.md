@@ -66,7 +66,7 @@ Write `workspace/briefs/<YYYY-MM-DD>_intake.md`, at most 20 lines:
 4. New action items for the person, and new things owed to them.
 5. Files skipped, and how many are still waiting.
 
-Record `last_run_state`, `inbox_waiting` (files still new), `i_owe_open`, `owed_to_me_open`.
+Record metrics as CLAUDE.md, Run states, says: `last_run_state`, `inbox_waiting` (files still new), `i_owe_open`, `owed_to_me_open`.
 Read the previous intake report with `mcp__trinity__list_reports` and do not repeat it. Publish a
 report, `report_type` `chief_of_staff.daily_intake`, title `Intake <date>: <n> items`.
 

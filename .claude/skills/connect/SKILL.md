@@ -58,5 +58,6 @@ Run what is set, never printing a value:
 
 Translate each result to one plain line: connected / not set / the problem and its fix (for
 mail.py: 3 a library missing - install requirements; 6 delegation not granted - the admin step;
-14 no single `address:` line in the profile). Record `last_run_state` (`not_set_up` if the person
-asked to check something that is not set, else `done`).
+14 no single `address:` line in the profile). Record metrics as CLAUDE.md, Run states, says:
+`last_run_state` (`not_set_up` if the person asked to check something that is not set, else
+`done`).

@@ -42,8 +42,15 @@ Read policies and procedures first. Then put each message in exactly one bucket:
 
 ## Step 3: Commitments
 
+Which party is the person: an address or the name in `workspace/profile/about-me.md` (not an
+`Example:` line). When neither is there and the message has more than one recipient or sender who
+could be them, the person is **not identified**: write the items below to
+`workspace/commitments/pending.yaml` instead (shape and question as `/identify` defines; the
+`attendees` are From, To and Cc) and end the reply with "Which of these is you: ...?". Never guess.
+
 Record a line (shape in `/note-commitment`, `source` = `email <subject>, <from>, <date>`,
-`thread` = the Message-ID or the first References entry) only where a sentence can be quoted:
+`thread` = the Message-ID or the first References entry, `due` computed from the message's `Date`
+header as CLAUDE.md, Dates, says) only where a sentence can be quoted:
 
 - someone asks the person directly for something: `i_owe`;
 - someone promises the person something: `owed_to_me`;
@@ -64,9 +71,11 @@ Durable facts only (who someone is, a decision, a customer's stated preference),
 
 ## Step 6: Write and close
 
-Write `workspace/email/<YYYY-MM-DD>_<slug>.md` (one file per run): per message one line -
+Write `workspace/email/<YYYY-MM-DD>_<slug>.md` (one file per run), with `Person: <name>` or
+`Person: not identified` at the top: per message one line -
 bucket, from, subject, date, what is asked - then the drafts in full. Mark each dropped file in
-the ledger (`--as email`). Record `last_run_state`, `i_owe_open`, `owed_to_me_open`. Publish a
+the ledger (`--as email`). Record metrics as CLAUDE.md, Run states, says: `last_run_state`
+(`held` if the person is not identified), `i_owe_open`, `owed_to_me_open`. Publish a
 report, `report_type` `chief_of_staff.email_triage`.
 
 ## Step 7: Reply

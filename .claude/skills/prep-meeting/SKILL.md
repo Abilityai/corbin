@@ -45,5 +45,5 @@ agreed."
 
 ## Step 4: Close
 
-Record `last_run_state`. Publish a report, `report_type` `chief_of_staff.meeting_prep`. Reply
+Record metrics as CLAUDE.md, Run states, says: `last_run_state`. Publish a report, `report_type` `chief_of_staff.meeting_prep`. Reply
 with the two or three things that matter most and what is open each way.

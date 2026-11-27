@@ -51,5 +51,5 @@ goes through `/save-policy`.
 
 ## Step 6: Reply
 
-The draft in full, then a line listing any `[YOU: ...]` placeholders. Record `last_run_state`
+The draft in full, then a line listing any `[YOU: ...]` placeholders. Record metrics as CLAUDE.md, Run states, says: `last_run_state`
 (`held` if placeholders remain). Nothing is sent.

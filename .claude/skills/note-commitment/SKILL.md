@@ -27,7 +27,9 @@ mentions it. Only the person can say something is settled.
   source: ""                # "meeting <title>, <date>" | "email <subject>, <from>, <date>" | "told by the person, <date>"
   thread: ""                # Message-ID of the email thread when known, else empty
   recorded: 2026-01-15      # the day the line was written
-  due:                      # only when the source states a date; never worked out
+  due:                      # YYYY-MM-DD, computed from the stated words (CLAUDE.md, Dates); empty when no day was named
+  due_text: ""              # the words as said ("by Thursday", "20 January", "next week")
+  due_assumed: ""           # what was assumed to compute it ("year from the meeting date 2026-11-23"); empty when nothing was
   not_before:               # only on the person's word
   status: open              # open | answered | done | dropped
   evidence: ""              # for answered: what moved it, with its date
@@ -45,13 +47,14 @@ only the person's word sets `done` or `dropped`; nothing is ever deleted.
 2. Work out whether this is a **new line** ("I promised...", "they said they would...") or a
    **change** ("done", "drop it", "not before March", "it's due on the 12th now", "reopen it").
 3. **New line.** `direction`, `who` and `what` in the person's words; `source` =
-   `told by the person, <today>` (add the meeting when they name one); `due` only when they give
-   a date (turn "by Friday" into the date and say which date you wrote). No `who` or no `what`:
+   `told by the person, <today>` (add the meeting when they name one); `due` only when they name a
+   day, computed from today as CLAUDE.md, Dates, says ("by Friday" -> the date, and say which date
+   you wrote). No `who` or no `what`:
    write nothing, ask for the missing part; state `held`.
 4. **Change.** Find the line by id, or by who and what. No match or several: write nothing, list
    the candidates in plain words; state `held`. Otherwise apply the change and add a dated note
    `told by the person`. Never change `who`, `what` or `quote` of a line read from a source.
-5. Write the file sorted by id and read it back. Record `last_run_state`, `i_owe_open`,
-   `owed_to_me_open`.
+5. Write the file sorted by id and read it back. Record metrics as CLAUDE.md, Run states, says:
+   `last_run_state`, `i_owe_open`, `owed_to_me_open`.
 6. Reply in one or two lines: what was written, the due date if any, the open counts, and what is
    missing ("tell me by when").

@@ -42,4 +42,4 @@ of it; never silently drop one. Read the file back.
 
 ## Step 4: Reply
 
-One line: the rule as saved. Record `last_run_state`.
+One line: the rule as saved. Record metrics as CLAUDE.md, Run states, says: `last_run_state`.

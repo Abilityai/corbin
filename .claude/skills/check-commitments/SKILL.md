@@ -19,6 +19,10 @@ Read policies, procedures and `workspace/profile/preferences.md` (follow-up days
 working days). Load `workspace/commitments/commitments.yaml`.
 
 - Cannot be parsed: change nothing, state `blocked`, say which line.
+- Items waiting in `workspace/commitments/pending.yaml` (`status: pending`) are not on the list
+  yet because you do not know which attendee is the person. Say how many and from which sources,
+  and end the reply with the question `/identify` defines ("Which of these is you: ...?"). If the
+  person has already said who they are in this message, `/identify` runs first and they are placed.
 - Missing or empty: say "Your list is empty - tell me a promise or drop a transcript and I'll
   start one." Never say "you owe nothing". State `held`.
 
@@ -47,7 +51,7 @@ draft: list it; the wording is theirs.
 
 ## Step 5: Write and close
 
-Write the changes of Step 2 only. Record `last_run_state`, `i_owe_open`, `owed_to_me_open` (whole
+Write the changes of Step 2 only. Record metrics as CLAUDE.md, Run states, says: `last_run_state`, `i_owe_open`, `owed_to_me_open` (whole
 list, not narrowed). Publish a report, `report_type` `chief_of_staff.commitments`.
 
 Reply: counts each way, the overdue and soonest-due items, what looks answered, the drafts in

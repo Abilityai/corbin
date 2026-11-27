@@ -1,6 +1,6 @@
 ---
 name: first-run
-description: Sets the agent up on first contact and proves it works in under two minutes - creates the person's private workspace, processes a short sample meeting without saving anything, checks whether the Company Brain is reachable, and tells the person the three things to try. Needs no credentials. Safe to run again at any time.
+description: Sets the agent up on first contact and proves it works in under two minutes - creates the person's private workspace, processes a short sample meeting without saving anything, checks whether the Company Brain is connected, tells the person the three things to try, and asks their name in its closing line without waiting for it. Needs no credentials. Safe to run again at any time.
 allowed-tools: Read, Write, Bash, Glob, mcp__trinity__list_agents, mcp__trinity__record_metrics
 user-invocable: true
 argument-hint: "[--verify-only]"
@@ -47,7 +47,14 @@ due as stated), the one open question, and the first two lines of a follow-up dr
 ## Step 4: Check the Company Brain
 
 Call `mcp__trinity__list_agents`. Note whether an agent named `cornelius` is listed. Do not call
-it. If the tool is not available (a local run), note "not checked".
+it. The list shows only agents you have been given permission to call, so "not listed" means "not
+connected to me yet", never "there is none". If the tool is not available (a local run), note
+"not checked".
+
+## Step 4b: Do you know who the person is?
+
+Read `workspace/profile/about-me.md`. Note whether it holds a name (a line under `## Name and role`
+that does not start with `Example:`). Do not ask now and do not wait.
 
 ## Step 5: Check the optional connections
 
@@ -56,11 +63,12 @@ Only whether each credential variable is set (`[ -n "$MAILBOX_READ_CREDENTIAL" ]
 
 ## Step 6: Record and reply
 
-Write `workspace/memory/first-run.json`: the time, each check's result. Record
-`last_run_state` = `done` (or `blocked` if Step 1 or 2 failed, naming what), and
-`inbox_waiting` = the count from Step 2.
+Write `workspace/memory/first-run.json`: the time, each check's result. Record metrics as
+CLAUDE.md, Run states, says: `last_run_state` = `done` (or `blocked` if Step 1 or 2 failed, naming
+what), and `inbox_waiting` = the count from Step 2. Not knowing the person's name is not a reason
+for `held`, and neither is a failed metrics call.
 
-Reply, at most 15 lines:
+Reply, at most 16 lines:
 
 1. One line: "I'm set up and working." (or what failed, plainly).
 2. The sample result, compact, labelled "Here is what I do with a meeting (a sample, nothing saved):".
@@ -68,8 +76,13 @@ Reply, at most 15 lines:
    - "Drag a meeting transcript or your notes onto me and say *process this*."
    - "Drag an exported email (.eml, .txt or .pdf) onto me and say *draft a reply*."
    - "Tell me something you promised, like *I promised Ana the budget by Friday*, then ask *what do I owe?*"
-4. One line on the Company Brain: listed ("I'll share what I learn with the Company Brain and ask it first.") or not ("There's no Company Brain here, so I'll keep my own notes.").
+4. One line on the Company Brain: listed ("I'll share what I learn with the Company Brain and ask
+   it first.") or not listed ("The Company Brain isn't connected to me yet, so my notes stay here
+   for now."). Not checked (a local run): leave the line out.
 5. One line: "If you want, I can also read your email or calendar - ask *how do I connect my email?* It's optional."
 6. If files are already waiting: "You've already dropped N files - say *catch up* and I'll process them."
+7. Last line, only if the profile holds no name: "One thing: what's your name? Tell me any time
+   (*I'm Sam*) so I know which items in a meeting are yours." It is a question, not a step - the
+   run is already finished.
 
 No paths, no tool names.

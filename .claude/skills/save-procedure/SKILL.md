@@ -65,6 +65,6 @@ Read both back.
 ## Step 4: Reply
 
 Two lines: what you saved, and when it will be used ("Next time an invoice from a supplier comes
-in, I'll ..."). Record `last_run_state`.
+in, I'll ..."). Record metrics as CLAUDE.md, Run states, says: `last_run_state`.
 
 Never write a procedure into `.claude/skills/` or any file the template ships.

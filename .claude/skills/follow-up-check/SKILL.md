@@ -41,8 +41,8 @@ at most 80 words, referring to the original by date. Mark `Draft - not sent`.
 
 ## Step 5: Close
 
-Record `last_run_state` (`not_set_up` is never used here: without a mailbox the run uses the
-notes and says "checked your notes only - connect a mailbox to check sent mail too"),
+Record metrics as CLAUDE.md, Run states, says: `last_run_state` (`not_set_up` is never used
+here: without a mailbox the run uses the notes and says "checked your notes only - connect a mailbox to check sent mail too"),
 `owed_to_me_open`. Publish a report, `report_type` `chief_of_staff.follow_up_check`.
 
 Reply: how many asks are waiting, oldest first, the nudges in full, and "Nothing was sent."

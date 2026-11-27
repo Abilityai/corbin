@@ -32,6 +32,7 @@ No credentials are needed.
 | Playbook | What it does |
 |---|---|
 | `/first-run` | Sets the agent up on first contact, proves it works on a sample, and shows what to try |
+| `/identify` | Records who you are the moment you say it ("I am Dana") and moves the items held for it onto your commitments list |
 | `/process-transcript` | Turns a meeting transcript or notes into decisions, action items, open questions and a follow-up draft |
 | `/triage-email` | Sorts an email by what it needs from you, records promises, drafts a reply where one is owed |
 | `/daily-intake` | Processes everything you dropped since the last run, and new mail if a mailbox is connected |

@@ -61,5 +61,5 @@ Over 25 lines: cut from the bottom up and say how many were left out. "You owe" 
 
 ## Step 7: Close
 
-Record `last_run_state`, `i_owe_open`, `owed_to_me_open`, `inbox_waiting`. Publish a report,
+Record metrics as CLAUDE.md, Run states, says: `last_run_state`, `i_owe_open`, `owed_to_me_open`, `inbox_waiting`. Publish a report,
 `report_type` `chief_of_staff.morning_brief`, title `Morning brief <date>`. Reply with the brief.
